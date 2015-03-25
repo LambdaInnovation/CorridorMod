@@ -23,8 +23,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import cn.corridor.Corridor;
 import cn.corridor.furniture.BlockInfo;
 import cn.corridor.furniture.BlockInfo.Type;
+import cn.liutils.api.render.model.TileEntityModelCustom;
 import cn.liutils.core.proxy.LIClientProps;
 import cn.liutils.template.block.BlockMulti;
 import cn.liutils.template.block.RenderBlockMulti;
@@ -53,7 +55,7 @@ public class BlockTemplate extends BlockMulti {
 	public ResourceLocation texture;
 	
 	@SideOnly(Side.CLIENT)
-	public IModelCustom model;
+	public TileEntityModelCustom model;
 
 	/**
 	 * Simple template version Ctor.
@@ -89,7 +91,7 @@ public class BlockTemplate extends BlockMulti {
 		
 		tileType = inf.getTileClass();
 		
-		//setCreativeTab(cct);
+		setCreativeTab(Corridor.cct);
 		setBlockName("cr_" + inf.name);
 		setBlockTextureName("corridor:" + inf.name + (type == Type.SINGLE ? "" : id));
 		setLightLevel(inf.brightness);
@@ -106,9 +108,19 @@ public class BlockTemplate extends BlockMulti {
 	@SideOnly(Side.CLIENT)
 	private void loadClient() {
 		texture = new ResourceLocation("corridor:textures/models/" + inf.name + (type == Type.SINGLE ? "" : id) + ".png");
-		model = AdvancedModelLoader.loadModel(new ResourceLocation("corridor:models/" + inf.name + ".png"));
+		model = new TileEntityModelCustom(
+			AdvancedModelLoader.loadModel(new ResourceLocation("corridor:models/" + inf.name + ".obj")));
 		
 		renderType = inf.getRenderClass();
+		if(!createdRenderers.containsKey(renderType)) {
+			try {
+				createdRenderers.put(renderType, renderType.newInstance());
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public BlockInfo getInfo() {

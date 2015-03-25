@@ -13,7 +13,10 @@
 package cn.corridor.furniture;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -136,13 +139,24 @@ public class BlockLoader {
 		checkInherit();
 	}
 	
+	private static List<Field> inheritFields = new ArrayList();
+	static {
+		for(Field f : BlockInfo.class.getFields()) {
+			if(f.getAnnotation(Inherit.class) != null) {
+				inheritFields.add(f);
+			}
+		}
+	}
+	
 	private void checkInherit() {
-		for(BlockInfo inf : blocks.values()) { //Hard coded, but doesn't matter now?
-			if(inf.typeStr == null) inf.typeStr = base.typeStr;
-			if(inf.blockType == null) inf.blockType = base.blockType;
-			if(inf.tileType == null) inf.tileType = base.tileType;
-			if(inf.renderType == null) inf.renderType = base.renderType;
-			if(inf.center == null) inf.center = base.center;
+		for(BlockInfo inf : blocks.values()) {
+			for(Field f : inheritFields) {
+				try {
+					if(f.get(inf) == null) f.set(inf, f.get(base));
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

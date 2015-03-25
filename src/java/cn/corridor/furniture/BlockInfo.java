@@ -17,12 +17,9 @@ import cn.corridor.furniture.block.BlockTemplate;
 import cn.liutils.template.block.RenderBlockMulti;
 import cn.liutils.util.DebugUtils;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import com.google.gson.stream.JsonToken;
 
 /**
  * The block info object to be deserialized from json.
@@ -38,8 +35,9 @@ public class BlockInfo {
 	}
 	
 	//Type-Primitive info
+	@Inherit
 	public String 
-		typeStr,
+		type,
 		blockType,
 		tileType,
 		renderType;
@@ -49,11 +47,16 @@ public class BlockInfo {
 	}
 	
 	//Structure
+	@Inherit
 	public int[][] structure;
+	@Inherit
 	public double[] center;
 	
 	//Block info
-	public String name, soundType;
+	public String name;
+	
+	@Inherit
+	public String soundType;
 	public int count;
 	
 	//Render info
@@ -86,7 +89,7 @@ public class BlockInfo {
 	private Class<?> getPropClass(String str) {
 		Class ret = null;
 		try {
-			ret = Class.forName("cn.corridor." + str);
+			ret = Class.forName("cn.corridor.furniture." + str);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -96,7 +99,7 @@ public class BlockInfo {
 	private void printDebug() {
 		System.out.println("---parse prop---");
 		StringBuilder sb = new StringBuilder();
-		sb.append("type: " + typeStr + "\n");
+		sb.append("type: " + type + "\n");
 		sb.append("blockType: " + blockType + "\n");
 		sb.append("tileType: " + tileType + "\n");
 		sb.append("renderType: " + renderType + "\n");
@@ -112,7 +115,7 @@ public class BlockInfo {
 	}
 	
 	public Type getType() {
-		return typeStr.equalsIgnoreCase("single") ? Type.SINGLE : Type.MULTI;
+		return type.equalsIgnoreCase("single") ? Type.SINGLE : Type.MULTI;
 	}
 
 }

@@ -56,9 +56,13 @@ public class Corridor {
 	}
 	
 	@EventHandler()
-	public void init(FMLInitializationEvent Init) { }
+	public void init(FMLInitializationEvent Init) { 
+		RegistrationManager.INSTANCE.registerAll(this, "Init");
+	}
 	
 	@EventHandler()
-	public void postInit(FMLPostInitializationEvent event) { }
+	public void postInit(FMLPostInitializationEvent event) {
+		RegistrationManager.INSTANCE.registerAll(this, "PostInit");
+	}
 
 }

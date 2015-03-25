@@ -1,32 +1,27 @@
 {
   "base": {
 	"type": "single",
+	"count": 0,
 	"blockType": "block.BlockTemplate",
 	"tileType": "tile.TileTemplate",
 	"renderType": "client.render.RenderTemplate",
+	"name": "null",
 	"soundType": "Metal",
 	"brightness": 0.0f,
 	"structure": [],
 	"center": [0.5, 0.5, 0.5]
   },
   
-  "tv": {
-	"type": "single",
-	"blockType": "block.BlockTV",
-	"renderType": "client.render.RenderTV",
-	"name": "tv",
-	"scale": 0.1
-  },
-  
-  "box": {
+  "cabinet": {
 	"type": "multi",
-	"name": "box",
+	"name": "cabinet",
 	"count": 5,
 	"structure": [
-		[0, 0, 1],
-		[1, 0, 0],
-		[1, 0, 1]
+	   [1, 0, 0],
+	   [0, 1, 0],
+	   [1, 1, 0]
 	],
-	"scale": 0.1
+	"center": [1, 0, 0.5],
+	"scale": 0.03
   }
 }

@@ -14,8 +14,10 @@ package cn.corridor.furniture.tile;
 
 import cn.annoreg.core.RegistrationClass;
 import cn.annoreg.mc.RegTileEntity;
-import cn.corridor.furniture.client.render.RenderTemplate;
+import cn.corridor.furniture.client.render.RenderTemplateGate;
 import cn.liutils.template.block.TileMulti;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author WeathFolD
@@ -27,6 +29,7 @@ import cn.liutils.template.block.TileMulti;
 public class TileTemplate extends TileMulti {
 
 	@RegTileEntity.Render
-	public static RenderTemplate renderer;
+	@SideOnly(Side.CLIENT)
+	public static RenderTemplateGate renderer;
 	
 }
