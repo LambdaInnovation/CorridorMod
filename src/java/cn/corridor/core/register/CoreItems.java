@@ -26,6 +26,6 @@ public class CoreItems {
 
 	@RegItem
 	@RegItem.UTName("logo")
-	public static Item logo = new Item().setCreativeTab(Corridor.cct);
+	public static Item logo = new Item();
 
 }
