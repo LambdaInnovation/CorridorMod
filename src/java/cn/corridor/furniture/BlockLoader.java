@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import cn.corridor.furniture.BlockInfo.Type;
 import cn.corridor.furniture.block.BlockTemplate;
+import cn.liutils.template.block.ItemBlockMulti;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -97,7 +98,7 @@ public class BlockLoader {
 		try {
 			Constructor<? extends BlockTemplate> ctor = inf.getBlockClass().getConstructor(BlockInfo.class);
 			ret = ctor.newInstance(inf);
-			GameRegistry.registerBlock(ret, id);
+			GameRegistry.registerBlock(ret, ItemBlockMulti.class, id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -113,7 +114,7 @@ public class BlockLoader {
 			try {
 				Constructor<? extends BlockTemplate> ctor = inf.getBlockClass().getConstructor(BlockInfo.class, Integer.TYPE);
 				ret[i] = ctor.newInstance(inf, i);
-				GameRegistry.registerBlock(ret[i], id + i);
+				GameRegistry.registerBlock(ret[i], ItemBlockMulti.class, id + i);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

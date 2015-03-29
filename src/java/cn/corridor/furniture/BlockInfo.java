@@ -53,6 +53,7 @@ public class BlockInfo {
 	public double[] center;
 	
 	//Block info
+	@Inherit
 	public String name;
 	
 	@Inherit

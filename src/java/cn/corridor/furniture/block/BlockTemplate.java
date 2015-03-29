@@ -72,12 +72,13 @@ public class BlockTemplate extends BlockMulti {
 	/**
 	 * Multi template version.
 	 */
-	public BlockTemplate(BlockInfo _inf, int id) {
+	public BlockTemplate(BlockInfo _inf, int _id) {
 		super(Material.rock);
 		assert(_inf.getType() == Type.MULTI);
 		
 		inf = _inf;
 		type = Type.MULTI;
+		id = _id;
 		deriveProps();
 	}
 	
@@ -92,7 +93,7 @@ public class BlockTemplate extends BlockMulti {
 		tileType = inf.getTileClass();
 		
 		setCreativeTab(Corridor.cct);
-		setBlockName("cr_" + inf.name);
+		setBlockName("cr_" + inf.name + (type == Type.SINGLE ? "" : id));
 		setBlockTextureName("corridor:" + inf.name + (type == Type.SINGLE ? "" : id));
 		setLightLevel(inf.brightness);
 		
