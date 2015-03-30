@@ -1,7 +1,11 @@
 ###################
-# Corridor Mod English Lang
+# Corridor Mod English Language File
 ###################
 
 itemGroup.corridor=Corridor Mod
 
-tile.cr_cabinet.name=Cabinet
+tile.cr_cabinet0.name=Cabinet 1
+tile.cr_cabinet1.name=Cabinet 2
+tile.cr_cabinet2.name=Cabinet 3
+tile.cr_cabinet3.name=Cabinet 4
+tile.cr_cabinet4.name=Cabinet 5
