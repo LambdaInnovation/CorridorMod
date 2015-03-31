@@ -32,7 +32,7 @@ public class RenderTemplate extends RenderBlockMultiModel {
 			return;
 		//Setup the render information by blockType.
 		BlockTemplate template = (BlockTemplate) blockType;
-		this.scale = template.getInfo().scale;
+		this.scale = template.scale;
 		this.mdl = template.model;
 		this.tex = template.texture;
 		

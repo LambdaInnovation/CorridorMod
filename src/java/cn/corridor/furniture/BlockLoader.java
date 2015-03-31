@@ -21,23 +21,33 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
-import cn.corridor.furniture.BlockInfo.Type;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.AdvancedModelLoader;
 import cn.corridor.furniture.block.BlockTemplate;
+import cn.corridor.furniture.client.render.RenderTemplate;
+import cn.liutils.api.render.model.ITileEntityModel;
+import cn.liutils.api.render.model.TileEntityModelCustom;
 import cn.liutils.template.block.ItemBlockMulti;
+import cn.liutils.util.GenericUtils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * This class parses the json property file and creates the block instances.
  * @author WeathFolD
  */
 public class BlockLoader {
+    
+    static Map<Class<? extends RenderTemplate>, RenderTemplate> createdRenders = new HashMap();
 	
-	static final String BASE_PROP_NAME = "base";
+	static final String DEFAULT_PROP_NAME = "default";
 	static final JsonParser parser = new JsonParser();
 	
 	JsonObject root; //The base JsonObject.
@@ -61,17 +71,12 @@ public class BlockLoader {
 		if(inf == null) {
 			return null;
 		}
-		return inf.getType() == Type.SINGLE ? 
-			createSingle(name, inf) : createMulti(name, inf);
+		return create(name, inf);
 	}
 	
 	public void loadAll() {
 		for(Entry<String, BlockInfo> ent : blocks.entrySet()) {
-			if(ent.getValue().getType() == Type.SINGLE) {
-				createSingle(ent.getKey(), ent.getValue());
-			} else {
-				createMulti(ent.getKey(), ent.getValue());
-			}
+			create(ent.getKey(), ent.getValue());
 		}
 	}
 	
@@ -93,44 +98,100 @@ public class BlockLoader {
 		return (Block[]) regged.get(name);
 	}
 	
-	private Block createSingle(String id, BlockInfo inf) {
-		Block ret = null;
-		try {
-			Constructor<? extends BlockTemplate> ctor = inf.getBlockClass().getConstructor(BlockInfo.class);
-			ret = ctor.newInstance(inf);
-			GameRegistry.registerBlock(ret, ItemBlockMulti.class, id);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		if(ret != null) {
-			regged.put(id, ret);
-		}
-		return ret;
-	}
-	
-	private Block[] createMulti(String id, BlockInfo inf) {
-		Block[] ret = new Block[inf.count];
-		for(int i = 0; i < inf.count; ++i) {
-			try {
-				Constructor<? extends BlockTemplate> ctor = inf.getBlockClass().getConstructor(BlockInfo.class, Integer.TYPE);
-				ret[i] = ctor.newInstance(inf, i);
-				GameRegistry.registerBlock(ret[i], ItemBlockMulti.class, id + i);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
+	private Object create(String id, BlockInfo inf) {
+	    if(inf.modelCount * inf.texCount == 1) {
+	        Block ret = createInstance(id, inf, 0, 0, "");
+	        
+	        regged.put(id, ret);
+	        return ret;
+	    }
+	    
+		Block[] ret = new Block[inf.modelCount * inf.texCount];
+		int i = 0;
+		for(int im = 0; im < inf.modelCount; ++im) {
+		    for(int it = 0; it < inf.texCount; ++it) {
+		        ret[i++] = createInstance(id, inf, im, it, "" + (i - 1));
+		    }
 		}
 		regged.put(id, ret);
 		return ret;
 	}
 	
+	private BlockTemplate createInstance(String id, BlockInfo inf, int mid, int tid, String pfix) {
+	    BlockTemplate ret = null;
+	    try {
+            Constructor<? extends BlockTemplate> ctor = inf.getBlockClass().getConstructor(Material.class);
+            ret = ctor.newInstance(inf.getMaterial());
+            setupBlock(ret, inf, mid, tid, pfix);
+            GameRegistry.registerBlock(ret, ItemBlockMulti.class, id + pfix);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+	    return ret;
+	}
+	
+	private void setupBlock(BlockTemplate block, BlockInfo inf, int mid, int tid, String pfix) {
+	    block.parent = this;
+	    block.tileType = inf.getTileClass();
+	    block.addSubBlock(inf.structure);
+	    block.setStepSound(inf.getStepSound());
+	    block.setLightLevel(inf.lightLevel);
+	    block.setHardness(inf.hardness);
+	    block.setBlockName(inf.name + pfix);
+	    block.setBlockTextureName("corridor:" + inf.name + pfix);
+	    if(GenericUtils.getSide() == Side.CLIENT)
+	        setupClient(block, inf, mid, tid);
+	    block.finishInit();
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private void setupClient(BlockTemplate block, BlockInfo inf, int mid, int tid) {
+	     block.renderType = getRender(inf);
+	     if(inf.modelCount == 1) {
+	         block.model = model(inf.modelName);
+	     } else {
+	         block.model = model(inf.modelName + mid);
+	     }
+	     if(inf.texCount == 1) {
+	         block.texture = texture(inf.textureName);
+	     } else {
+	         block.texture = texture(inf.textureName + tid);
+	     }
+	     block.center = inf.center;
+	     block.scale = inf.scale;
+	}
+	
+	private ResourceLocation texture(String name) {
+	    return new ResourceLocation("corridor:textures/models/" + name + ".png");
+	}
+	
+	private ITileEntityModel model(String name) {
+	    return new TileEntityModelCustom(AdvancedModelLoader.loadModel(new ResourceLocation("corridor:models/" + name + ".obj")));
+	}
+	
+	private RenderTemplate getRender(BlockInfo inf) {
+	    Class<? extends RenderTemplate> clazz = inf.getRenderClass();
+	    RenderTemplate ret = createdRenders.get(clazz);
+	    if(ret != null)
+	        return ret;
+	    try {
+	        ret = clazz.newInstance();
+	        createdRenders.put(clazz, ret);
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    return ret;
+	}
+	
 	private void init() {
 		try {
 			for(Entry<String, JsonElement> ent : root.entrySet()) {
-				if(ent.getKey().equals(BASE_PROP_NAME)) {
+				if(ent.getKey().equals(DEFAULT_PROP_NAME)) {
 					base = BlockInfo.create(ent.getValue());
 					continue;
 				}
-				blocks.put(ent.getKey(), BlockInfo.create(ent.getValue()));
+				BlockInfo inf = BlockInfo.create(ent.getValue());
+				blocks.put(ent.getKey(), inf);
 			}
 		} catch(Exception e) {
 			System.err.println("Unexpected error occured while parsing block property file.");
@@ -158,6 +219,7 @@ public class BlockLoader {
 					e.printStackTrace();
 				}
 			}
+			inf.printDebug();
 		}
 	}
 

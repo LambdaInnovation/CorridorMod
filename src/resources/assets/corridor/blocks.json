@@ -1,76 +1,33 @@
 {
-  "base": {
-	"type": "single",
-	"count": 0,
+  "default": {
+	"name": "default",
 	"blockType": "block.BlockTemplate",
 	"tileType": "tile.TileTemplate",
 	"renderType": "client.render.RenderTemplate",
-	"name": "null",
-	"soundType": "Metal",
-	"brightness": 0.0f,
 	"structure": [],
-	"center": [0.5, 0.5, 0.5]
+	"center": [0, 0, 0],
+	"soundType": "Wood",
+	"material": "wood",
+	"lightLevel": 0.0,
+	"hardness": 2.0
+	//Other props: texCount, modelCount, textureName, modelName, scale
   },
-  
   "cabinet": {
-	"type": "multi",
-	"name": "cabinet",
-	"count": 5,
-	"structure": [
-	   [1, 0, 0],
-	   [0, 1, 0],
-	   [1, 1, 0]
-	],
-	"center": [1, 0, 0.5],
-	"scale": 0.03
+    "name": "cabinet",
+    "texCount": 5,
+    "structure": [
+        [1, 0, 0],
+        [0, 1, 0],
+        [1, 1, 0]
+    ],
+    "center": [1, 0, 0.5],
+    "scale": 0.03
   },
-  
-/*"shelf": {
-	"type": "multi",
-	"name": "shelf",
-	"count": 3,
-	"structure": [
-	   [1, 0, 0]
-	],
-	"center": [1, 0, 0.5]
-  }*/
-  
-  "sofas": {
-	"type": "multi",
-	"name": "sofas",
-	"count": 3,
-	"structure": [],
-	"center": [0.5, 0, 0.5],
-	"scale": 0.013
-  },
-  
-  "bathtub": {
-	"type": "multi",
-	"name": "bathtub",
-	"count": 2,
-	"structure": [
-	   [1, 0, 0]
-	],
-	"center": [1, 0, 0.5],
-	"scale": 1.0
-  },
-  
-  "tv": {
-	"type": "multi",
-	"name": "tv",
-	"count": 2,
-	"structure": [],
-	"center": [0.5, 0, 0.5],
-	"scale": 1.0
-  },
-  
-  "sink": {
-	"type": "multi",
-	"name": "sink",
-	"count": 2,
-	"structure": [],
-	"center": [0.5, 0, 0.5],
-	"scale": 1.0
+  "sofa_small": {
+    "name": "sofas",
+    "textureName": "sofa",
+    "texCount": 3,
+    "center": [0.5, 0, 0.5],
+    "scale": 0.013
   }
-  
 }

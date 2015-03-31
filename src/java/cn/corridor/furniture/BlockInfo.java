@@ -12,9 +12,12 @@
  */
 package cn.corridor.furniture;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import cn.corridor.furniture.block.BlockTemplate;
-import cn.liutils.template.block.RenderBlockMulti;
+import cn.corridor.furniture.client.render.RenderTemplate;
 import cn.liutils.util.DebugUtils;
 
 import com.google.gson.Gson;
@@ -22,7 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 /**
- * The block info object to be deserialized from json.
+ * The block info object deserialized from json.
  * @author WeathFolD
  */
 public class BlockInfo {
@@ -34,35 +37,42 @@ public class BlockInfo {
 		gson = gb.create();
 	}
 	
-	//Type-Primitive info
+	//Meta&Core info
 	@Inherit
 	public String 
-		type,
-		blockType,
-		tileType,
-		renderType;
+	    blockType,
+	    tileType,
+	    renderType,
+	    name;
 	
-	public enum Type {
-		SINGLE, MULTI
-	}
-	
-	//Structure
+	//Multiblock Struct Info
 	@Inherit
 	public int[][] structure;
+	
 	@Inherit
 	public double[] center;
 	
-	//Block info
+	public double scale = 1.0;
+	
+	public int 
+	    texCount = 1, 
+	    modelCount = 1;
+	
+	//Block properties
 	@Inherit
-	public String name;
+	public String 
+	    soundType,
+	    material;
 	
 	@Inherit
-	public String soundType;
-	public int count;
+	public Float 
+	    lightLevel,
+	    hardness;
 	
-	//Render info
-	public double scale;
-	public float brightness;
+	//Internally derived props
+	public String 
+	    textureName,
+	    modelName;
 	
 	/**
 	 * To be called by gson. Do not explicitly call this.
@@ -71,7 +81,7 @@ public class BlockInfo {
 	
 	public static BlockInfo create(JsonElement elem) {
 		BlockInfo ret = gson.fromJson(elem, BlockInfo.class);
-		ret.printDebug();
+		ret.finishLoading();
 		return ret;
 	}
 	
@@ -83,8 +93,33 @@ public class BlockInfo {
 		return (Class<? extends TileEntity>) getPropClass(tileType);
 	}
 	
-	public Class<? extends RenderBlockMulti> getRenderClass() {
-		return (Class<? extends RenderBlockMulti>) getPropClass(renderType);
+	public Class<? extends RenderTemplate> getRenderClass() {
+		return (Class<? extends RenderTemplate>) getPropClass(renderType);
+	}
+	
+	public SoundType getStepSound() {
+	    SoundType ret = null;
+	    try {
+	        ret = (SoundType) Block.class.getField("soundType" + soundType).get(null);
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    return ret;
+	}
+	
+	public Material getMaterial() {
+	    Material ret = null;
+        try {
+            ret = (Material) Material.class.getField(material).get(null);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+	}
+	
+	private void finishLoading() {
+	    if(textureName == null) textureName = name;
+	    if(modelName == null) modelName = name;
 	}
 	
 	private Class<?> getPropClass(String str) {
@@ -97,26 +132,21 @@ public class BlockInfo {
 		return ret;
 	}
 	
-	private void printDebug() {
-		System.out.println("---parse prop---");
+	void printDebug() {
+		System.out.println("------");
 		StringBuilder sb = new StringBuilder();
-		sb.append("type: " + type + "\n");
+		sb.append("name: " + name + "\n");
 		sb.append("blockType: " + blockType + "\n");
 		sb.append("tileType: " + tileType + "\n");
 		sb.append("renderType: " + renderType + "\n");
-		sb.append("structure: " + structure + "\n");
+		sb.append("structure:\n");
 		for(int[] a : structure) {
-			sb.append("-" + DebugUtils.formatArray(a) + "\n");
+			sb.append("\t-" + DebugUtils.formatArray(a) + "\n");
 		}
 		sb.append("name: " + name + "\n");
-		sb.append("count: " + count + "\n");
+		sb.append("count: " + texCount + " " + modelCount + "\n");
 		sb.append("scale: " + scale + "\n");
 		System.out.print(sb.toString());
-		System.out.println("---parse prop end---");
+		System.out.println("------");
 	}
-	
-	public Type getType() {
-		return type.equalsIgnoreCase("single") ? Type.SINGLE : Type.MULTI;
-	}
-
 }

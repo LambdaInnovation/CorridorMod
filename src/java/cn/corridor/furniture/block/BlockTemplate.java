@@ -12,25 +12,15 @@
  */
 package cn.corridor.furniture.block;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.Block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
 import cn.corridor.Corridor;
-import cn.corridor.furniture.BlockInfo;
-import cn.corridor.furniture.BlockInfo.Type;
-import cn.liutils.api.render.model.TileEntityModelCustom;
-import cn.liutils.core.proxy.LIClientProps;
+import cn.corridor.furniture.BlockLoader;
+import cn.liutils.api.render.model.ITileEntityModel;
 import cn.liutils.template.block.BlockMulti;
 import cn.liutils.template.block.RenderBlockMulti;
-import cn.liutils.util.GenericUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -38,98 +28,36 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author WeathFolD
  */
 public class BlockTemplate extends BlockMulti {
+    
+    public BlockLoader parent;
 	
-	final BlockInfo inf;
-	
-	Map<Class<? extends RenderBlockMulti>, RenderBlockMulti> createdRenderers = new HashMap();
-	
-	Class<? extends TileEntity> tileType;
+	public Class<? extends TileEntity> tileType;
 	
 	@SideOnly(Side.CLIENT) 
-	Class<? extends RenderBlockMulti> renderType;
-	
-	public final Type type;
-	int id; //Sub block ID, if is multi type.
+    public RenderBlockMulti renderType;
 	
 	@SideOnly(Side.CLIENT)
 	public ResourceLocation texture;
 	
 	@SideOnly(Side.CLIENT)
-	public TileEntityModelCustom model;
+	public ITileEntityModel model;
+	
+	@SideOnly(Side.CLIENT)
+	public double[] center;
+	
+	@SideOnly(Side.CLIENT)
+	public double scale;
 
 	/**
 	 * Simple template version Ctor.
 	 */
-	public BlockTemplate(BlockInfo _inf) {
-		super(Material.rock);
-		assert(_inf.getType() == Type.SINGLE);
-		
-		inf = _inf;
-		type = Type.SINGLE;
-		deriveProps();
-	}
-	
-	/**
-	 * Multi template version.
-	 */
-	public BlockTemplate(BlockInfo _inf, int _id) {
-		super(Material.rock);
-		assert(_inf.getType() == Type.MULTI);
-		
-		inf = _inf;
-		type = Type.MULTI;
-		id = _id;
-		deriveProps();
-	}
-	
-	private void deriveProps() {
-		try {
-			SoundType snd = (SoundType) Block.class.getField("soundType" + inf.soundType).get(null);
-			this.setStepSound(snd);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		tileType = inf.getTileClass();
-		
+	public BlockTemplate(Material mat) {
+		super(mat);
 		setCreativeTab(Corridor.cct);
-		setBlockName("cr_" + inf.name + (type == Type.SINGLE ? "" : id));
-		setBlockTextureName("corridor:" + inf.name + (type == Type.SINGLE ? "" : id));
-		setLightLevel(inf.brightness);
-		
-		this.addSubBlock(inf.structure);
-		
-		this.finishInit();
-		
-		if(GenericUtils.getSide() == Side.CLIENT) {
-			loadClient();
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	private void loadClient() {
-		texture = new ResourceLocation("corridor:textures/models/" + inf.name + (type == Type.SINGLE ? "" : id) + ".png");
-		model = new TileEntityModelCustom(
-			AdvancedModelLoader.loadModel(new ResourceLocation("corridor:models/" + inf.name + ".obj")));
-		
-		renderType = inf.getRenderClass();
-		if(!createdRenderers.containsKey(renderType)) {
-			try {
-				createdRenderers.put(renderType, renderType.newInstance());
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public BlockInfo getInfo() {
-		return inf;
 	}
 	
 	public RenderBlockMulti getRender() {
-		return createdRenderers.get(renderType);
+		return renderType;
 	}
 
 	@Override
@@ -145,7 +73,7 @@ public class BlockTemplate extends BlockMulti {
 
 	@Override
 	public double[] getRotCenter() {
-		return inf.center;
+		return center;
 	}
 
 }
