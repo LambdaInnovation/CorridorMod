@@ -83,5 +83,15 @@
     "texCount": 2,
     "center": [0.5, 0, 0.5],
     "scale": 0.016
+  },
+  "lamp": {
+  	"blockType": "block.BlockLampTemplate",
+    "name": "lamp",
+    "texCount": 2
+  },
+  "lampa": {
+  	"blockType": "block.BlockLampActivedTemplate",
+    "name": "lampa",
+    "texCount": 2
   }
 }
