@@ -23,11 +23,66 @@
     "center": [1, 0, 0.5],
     "scale": 0.03
   },
+  "shelf": {
+    "name": "shelf",
+	"modelCount": 3,
+	"structure": [
+	    [1, 0, 0],
+        [1, 0, 0]
+	],
+    "center": [1, 0, 0.5],
+    "scale": 0.03
+  },
   "sofa_small": {
     "name": "sofas",
     "textureName": "sofa",
     "texCount": 3,
     "center": [0.5, 0, 0.5],
     "scale": 0.013
+  },
+  "sofa_medium": {
+    "name": "sofam",
+    "textureName": "sofa",
+    "texCount": 3,
+	"structure": [
+	    [1, 0, 0],
+        [1, 0, 0]
+	],
+    "center": [1, 0, 0.5],
+    "scale": 0.0165
+  },
+  "sofa_large": {
+    "name": "sofal",
+    "textureName": "sofa",
+    "texCount": 3,
+	"structure": [
+        [-1, 0, 0],
+        [1, 0, 0],
+        [2, 0, 0]
+    ],
+    "center": [1, 0, 0.5],
+    "scale": 0.019
+  },
+  "bathtub": {
+    "name": "bathtub",
+    "texCount": 2,
+	"structure": [
+	    [1, 0, 0],
+        [1, 0, 0]
+	],
+    "center": [1, 0, 0.5],
+    "scale": 0.01
+  },
+  "tv": {
+    "name": "tv",
+    "texCount": 2,
+    "center": [0.5, 0, 0.5],
+    "scale": 0.01
+  },
+  "sink": {
+    "name": "sink",
+    "texCount": 2,
+    "center": [0.5, 0, 0.5],
+    "scale": 0.016
   }
 }
