@@ -133,9 +133,8 @@ public class BlockInfo {
 	}
 	
 	void printDebug() {
-		System.out.println("------");
 		StringBuilder sb = new StringBuilder();
-		sb.append("name: " + name + "\n");
+		sb.append("{ name: " + name + "\n");
 		sb.append("blockType: " + blockType + "\n");
 		sb.append("tileType: " + tileType + "\n");
 		sb.append("renderType: " + renderType + "\n");
@@ -147,6 +146,6 @@ public class BlockInfo {
 		sb.append("count: " + texCount + " " + modelCount + "\n");
 		sb.append("scale: " + scale + "\n");
 		System.out.print(sb.toString());
-		System.out.println("------");
+		System.out.println("}");
 	}
 }

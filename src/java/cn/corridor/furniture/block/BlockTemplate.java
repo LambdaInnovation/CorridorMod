@@ -33,6 +33,8 @@ public class BlockTemplate extends BlockMulti {
 	
 	public Class<? extends TileEntity> tileType;
 	
+	public int subID;
+	
 	@SideOnly(Side.CLIENT) 
     public RenderBlockMulti renderType;
 	

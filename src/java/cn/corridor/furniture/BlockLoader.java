@@ -132,6 +132,7 @@ public class BlockLoader {
 	
 	private void setupBlock(BlockTemplate block, BlockInfo inf, int mid, int tid, String pfix) {
 	    block.parent = this;
+	    block.subID = mid * inf.texCount + tid;
 	    block.tileType = inf.getTileClass();
 	    block.addSubBlock(inf.structure);
 	    block.setStepSound(inf.getStepSound());

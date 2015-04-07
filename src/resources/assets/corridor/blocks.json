@@ -10,7 +10,6 @@
 	"material": "wood",
 	"lightLevel": 0.0,
 	"hardness": 2.0
-	//Other props: texCount, modelCount, textureName, modelName, scale
   },
   "cabinet": {
     "name": "cabinet",
