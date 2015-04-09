@@ -87,11 +87,58 @@
   "lamp": {
   	"blockType": "block.BlockLampTemplate",
     "name": "lamp",
-    "texCount": 2
+    "texCount": 2,
+    "center": [0.5, 0, 0.5],
+    "scale": 0.06
   },
   "lampa": {
   	"blockType": "block.BlockLampActivedTemplate",
     "name": "lampa",
-    "texCount": 2
+    "texCount": 2,
+	"center": [0.5, 0, 0.5],
+    "scale": 0.06
+  },
+  "desk": {
+    "name": "desk",
+    "texCount": 5,
+	"structure": [
+	    [1, 0, 0],
+        [1, 0, 0]
+	],
+    "center": [1, 0, 0.5],
+    "scale": 0.04
+  },
+//"lampl": {
+//},
+  "chair": {
+    "name": "chair",
+    "texCount": 4,
+	"structure": [
+	    [0, 1, 0]
+	],
+    "center": [0.5, 0, 0.5],
+    "scale": 0.092
+  },
+  "file_shelf": {
+    "name": "fshelf",
+	"structure": [
+	    [1, 0, 0],
+	    [1, 1, 0],
+	    [0, 1, 0],
+	    [-1, 0, 0],
+	    [-1, 1, 0]
+	],
+    "center": [0.5, 0, 0.5],
+    "scale": 0.1
+  },
+  "wdesk": {
+    "name": "wdesk",
+    "texCount": 2,
+	"structure": [
+	    [-1, 0, 0],
+	    [1, 0, 0]
+	],
+    "center": [0.5, 0, 0.5],
+    "scale": 0.12
   }
 }
