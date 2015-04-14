@@ -84,20 +84,20 @@
 		"center": [0.5, 0, 0.5],
 		"scale": 0.016
 	},
-	"lamp": {
+/*	"lamp": {
 		"blockType": "block.BlockLampTemplate",
 		"name": "lamp",
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.06
-	},
-	"lampa": {
+	},*/
+/*	"lampa": {
 		"blockType": "block.BlockLampActivedTemplate",
 		"name": "lampa",
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.06
-	},
+	},*/
 	"desk": {
 		"name": "desk",
 		"texCount": 5,
@@ -204,7 +204,6 @@
 	},
 	"tvshelf": {
 		"name": "tvshelf",
-		"texCount": 1,
 		"structure": [
 			[1, 0, 0],
 			[1, 0, 0]
@@ -243,10 +242,119 @@
 		"center": [0, 0, 0],
 		"scale": 0.08
 	},*/
-	"cholder": {
+/*	"cholder": {
 		"name": "cholder",
 		"texCount": 1,
 		"center": [0, 1.5, 0],
+		"lightLevel": 2.0,
 		"scale": 0.1
+	},*/
+/*	"cholderl": {
+		"name": "cholderl",
+		"structure": [
+			[1, 0, 0],
+			[1, 0, 1],
+			[0, 0, 1]
+		],
+		"center": [0.5, 1.5, -0.5],
+		"lightLevel": 3.5,
+		"scale": 0.1
+	},*/
+/*	"wine": {
+		"name": "wine",
+		"structure": [
+			[0, 1, 0],
+			[0, 2, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.1
+	},*/
+/*	"mirror": {
+		"name": "mirror",
+		"texCount": 4,
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"scurtain": {
+		"name": "scurtain",
+		"texCount": 4,
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"bcurtain": {
+		"name": "bcurtain",
+		"texCount": 4,
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"mcurtain": {
+		"name": "mcurtain",
+		"texCount": 4,
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"lcurtain": {
+		"name": "lcurtain",
+		"texCount": 4,
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"pianopb": {
+		"name": "pianopb",
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"chandeliers": {
+		"name": "chandeliers",
+		"texCount": 4,
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+/*	"chandelierl": {
+		"name": "chandelierl",
+		"texCount": 4,
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.023
+	},*/
+	"car": {
+		"name": "car",
+		"structure": [
+			[0, 1, 0],
+			[1, 0, 0],
+			[1, 1, 0],
+			[2, 0, 0],
+			[-1, 0, 0],
+			[2, 1, 0],
+			[-2, 0, 0],
+			[3, 0, 0],
+			
+			[0, 0, 1],
+			[0, 1, 1],
+			[1, 0, 1],
+			[1, 1, 1],
+			[2, 0, 1],
+			[-1, 0, 1],
+			[2, 1, 1],
+			[-2, 0, 1],
+			[3, 0, 1]
+		],
+		"center": [1, 0, 1],
+		"scale": 0.021
 	}
+//Objects with annotation is not available. It may have problem with model, rendering, template and so on.
+//And also deadRabbit, mydoor, chaos.
+//Because of the speciality with function, they have been annotationed.
+//This will be fix when next checking.
 }
