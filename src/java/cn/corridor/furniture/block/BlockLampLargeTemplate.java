@@ -12,30 +12,20 @@
  */
 package cn.corridor.furniture.block;
 
-import cn.corridor.furniture.Furnitures;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import cn.corridor.furniture.Furnitures;
 
 /**
  * 
  * @author KSkun
  */
-public class BlockLampTemplate extends BlockTemplate {
+public class BlockLampLargeTemplate extends BlockLampTemplate {
 	
-	protected String name;
-
-	public BlockLampTemplate(Material mat) {
+    public BlockLampLargeTemplate(Material mat) {
 		super(mat);
-		name = "lamp_a";
+		name = "lampl_a";
 		if(getLightValue() != 0) setCreativeTab(null);
 	}
-	
-    @Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
-			float a, float b, float c) {
-    	world.setBlock(x, y, z, Furnitures.instance.getBlock(name, subID));
-    	return true;
-    }
-
 }

@@ -13,6 +13,8 @@
 	},
 	"cabinet": {
 		"name": "cabinet",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 5,
 		"structure": [
 			[1, 0, 0],
@@ -24,6 +26,8 @@
 	},
 	"shelf": {
 		"name": "shelf",
+		"material": "wood",
+		"hardness": 2,
 		"modelCount": 3,
 		"structure": [
 			[1, 0, 0],
@@ -34,6 +38,8 @@
 	},
 	"sofa_small": {
 		"name": "sofas",
+		"material": "wood",
+		"hardness": 2,
 		"textureName": "sofa",
 		"texCount": 3,
 		"center": [0.5, 0, 0.5],
@@ -41,6 +47,8 @@
 	},
 	"sofa_medium": {
 		"name": "sofam",
+		"material": "wood",
+		"hardness": 2,
 		"textureName": "sofa",
 		"texCount": 3,
 		"structure": [
@@ -52,6 +60,8 @@
 	},
 	"sofa_large": {
 		"name": "sofal",
+		"material": "wood",
+		"hardness": 2,
 		"textureName": "sofa",
 		"texCount": 3,
 		"structure": [
@@ -64,6 +74,8 @@
 	},
 	"bathtub": {
 		"name": "bathtub",
+		"material": "rock",
+		"hardness": 2,
 		"texCount": 2,
 		"structure": [
 			[1, 0, 0],
@@ -72,34 +84,44 @@
 		"center": [1, 0, 0.5],
 		"scale": 0.01
 	},
-	"tv": {
+	"tv": {//
 		"name": "tv",
+		"material": "iron",
+		"hardness": 2,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.01
 	},
 	"sink": {
 		"name": "sink",
+		"material": "rock",
+		"hardness": 2,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.016
 	},
-/*	"lamp": {
+	"lamp": {
 		"blockType": "block.BlockLampTemplate",
 		"name": "lamp",
+		"hardness": 1,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.06
-	},*/
-/*	"lampa": {
-		"blockType": "block.BlockLampActivedTemplate",
+	},
+	"lamp_a": {
+		"blockType": "block.BlockLampTemplate",
 		"name": "lampa",
+		"hardness": 1,
+		"lightLevel": 2.5,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.06
-	},*/
+	},
 	"desk": {
 		"name": "desk",
+		"soundType": "Wood",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 5,
 		"structure": [
 			[1, 0, 0],
@@ -108,10 +130,33 @@
 		"center": [1, 0, 0.5],
 		"scale": 0.04
 	},
-//	"lampl": {
-//	},
+	"lampl": {
+		"blockType": "block.BlockLampLargeTemplate",
+		"name": "lampl",
+		"hardness": 1,
+		"texCount": 2,
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.06
+	},
+	"lampl_a": {
+		"blockType": "block.BlockLampLargeTemplate",
+		"name": "lampla",
+		"hardness": 1,
+		"lightLevel": 3.5,
+		"texCount": 2,
+		"structure": [
+			[0, 1, 0]
+		],
+		"center": [0.5, 0, 0.5],
+		"scale": 0.06
+	},
 	"chair": {
 		"name": "chair",
+		"material": "wood",
+		"hardness": 1,
 		"texCount": 4,
 		"structure": [
 			[0, 1, 0]
@@ -121,6 +166,8 @@
 	},
 	"file_shelf": {
 		"name": "fshelf",
+		"material": "iron",
+		"hardness": 3,
 		"structure": [
 			[1, 0, 0],
 			[1, 1, 0],
@@ -133,6 +180,8 @@
 	},
 	"wdesk": {
 		"name": "wdesk",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 2,
 		"structure": [
 			[-1, 0, 0],
@@ -143,12 +192,17 @@
 	},
 	"ksink": {
 		"name": "ksink",
+		"material": "wood",
+		"hardness": 1,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.1
 	},
 	"clock": {
 		"name": "clock",
+		"soundType": "Wood",
+		"material": "wood",
+		"hardness": 3,
 		"texCount": 2,
 		"structure": [
 			[0, 1, 0],
@@ -160,6 +214,8 @@
 	},
 	"kshelf": {
 		"name": "kshelf",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 4,
 		"structure": [
 			[1, 0, 1],
@@ -170,6 +226,8 @@
 	},
 	"tshelf": {
 		"name": "tshelf",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 4,
 		"structure": [
 			[0, 1, 0],
@@ -181,18 +239,24 @@
 	},
 	"ksshelf": {
 		"name": "ksshelf",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 3,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.1
 	},
 	"schair": {
 		"name": "schair",
+		"material": "wood",
+		"hardness": 0.5,
 		"texCount": 2,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.14
 	},
 	"bed": {
 		"name": "bed",
+		"material": "wood",
+		"hardness": 2,
 		"texCount": 2,
 		"structure": [
 			[1, 0, 0],
@@ -204,6 +268,8 @@
 	},
 	"tvshelf": {
 		"name": "tvshelf",
+		"material": "wood",
+		"hardness": 1,
 		"structure": [
 			[1, 0, 0],
 			[1, 0, 0]
@@ -211,18 +277,27 @@
 		"center": [1, 0, 0.5],
 		"scale": 0.07
 	},
-/*	"oillamp": {
+	"oillamp": {
+		"blockType": "block.BlockOilLampTemplate",
 		"name": "oillamp",
-		"texCount": 2,
-		"structure": [
-			[1, 0, 0],
-			[1, 0, 0]
-		],
-		"center": [1, 0, 0.5],
+		"material": "glass",
+		"hardness": 0.5,
+		"center": [0.5, 0, 0.5],
 		"scale": 0.1
-	},*/
+	},
+	"oillamp_a": {
+		"blockType": "block.BlockOilLampTemplate",
+		"name": "oillampa",
+		"material": "glass",
+		"hardness": 0.5,
+		"lightLevel": 2,
+		"center": [0.5, 0, 0.5],
+		"scale": 0.1
+	},
 	"hanger": {
 		"name": "hanger",
+		"material": "wood",
+		"hardness": 0.5,
 		"structure": [
 			[0, 1, 0],
 			[0, 2, 0]
@@ -232,6 +307,8 @@
 	},
 /*	"piano": {
 		"name": "piano",
+		"material": "wood",
+		"hardness": 4,
 		"structure": [
 			[1, 0, 0],
 			[1, 0, 1],
@@ -244,6 +321,8 @@
 	},*/
 /*	"cholder": {
 		"name": "cholder",
+		"material": "cloth",
+		"hardness": 2,
 		"texCount": 1,
 		"center": [0, 1.5, 0],
 		"lightLevel": 2.0,
@@ -251,6 +330,8 @@
 	},*/
 /*	"cholderl": {
 		"name": "cholderl",
+		"material": "cloth",
+		"hardness": 2,
 		"structure": [
 			[1, 0, 0],
 			[1, 0, 1],
@@ -262,6 +343,8 @@
 	},*/
 /*	"wine": {
 		"name": "wine",
+		"material": "glass",
+		"soundType": "Glass",
 		"structure": [
 			[0, 1, 0],
 			[0, 2, 0]
@@ -271,6 +354,8 @@
 	},*/
 /*	"mirror": {
 		"name": "mirror",
+		"material": "glass",
+		"soundType": "Glass",
 		"texCount": 4,
 		"structure": [
 			[0, 1, 0]
@@ -280,30 +365,44 @@
 	},*/
 /*	"scurtain": {
 		"name": "scurtain",
+		"material": "cloth",
+		"soundType": "Cloth",
+		"hardness": 2,
 		"texCount": 4,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.023
 	},*/
 /*	"bcurtain": {
 		"name": "bcurtain",
+	    "material": "cloth",
+		"soundType": "Cloth",
+		"hardness": 2,
 		"texCount": 4,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.023
 	},*/
 /*	"mcurtain": {
 		"name": "mcurtain",
+		"material": "cloth",
+		"soundType": "Cloth",
+		"hardness": 2,
 		"texCount": 4,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.023
 	},*/
 /*	"lcurtain": {
 		"name": "lcurtain",
+		"material": "cloth",
+		"soundType": "Cloth",
+		"hardness": 2,
 		"texCount": 4,
 		"center": [0.5, 0, 0.5],
 		"scale": 0.023
 	},*/
 /*	"pianopb": {
 		"name": "pianopb",
+		"material": "wood",
+		"hardness": 4,
 		"structure": [
 			[0, 1, 0]
 		],
@@ -312,6 +411,9 @@
 	},*/
 /*	"chandeliers": {
 		"name": "chandeliers",
+		"material": "glass",
+		"soundType": "Glass",
+		"hardness": 2,
 		"texCount": 4,
 		"structure": [
 			[0, 1, 0]
@@ -321,6 +423,9 @@
 	},*/
 /*	"chandelierl": {
 		"name": "chandelierl",
+		"material": "glass",
+		"soundType": "Glass",
+		"hardness": 2,
 		"texCount": 4,
 		"structure": [
 			[0, 1, 0]
@@ -330,6 +435,8 @@
 	},*/
 	"car": {
 		"name": "car",
+		"material": "iron",
+		"soundType": "Stone",
 		"structure": [
 			[0, 1, 0],
 			[1, 0, 0],

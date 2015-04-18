@@ -21,20 +21,18 @@ import net.minecraft.world.World;
  * 
  * @author KSkun
  */
-public class BlockLampTemplate extends BlockTemplate {
-	
-	protected String name;
+public class BlockOilLampTemplate extends BlockLampTemplate {
 
-	public BlockLampTemplate(Material mat) {
+	public BlockOilLampTemplate(Material mat) {
 		super(mat);
-		name = "lamp_a";
+		name = "oillamp_a";
 		if(getLightValue() != 0) setCreativeTab(null);
 	}
 	
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	world.setBlock(x, y, z, Furnitures.instance.getBlock(name, subID));
+    	world.setBlock(x, y, z, Furnitures.instance.getBlock(name));
     	return true;
     }
 
