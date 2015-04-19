@@ -24,17 +24,21 @@ import net.minecraft.world.World;
 public class BlockLampTemplate extends BlockTemplate {
 	
 	protected String name;
+	protected boolean isActived = false;
 
 	public BlockLampTemplate(Material mat) {
 		super(mat);
-		name = "lamp_a";
-		if(getLightValue() != 0) setCreativeTab(null);
+		name = "lamp";
+		if(getLightValue() != 0) {
+			isActived = true;
+			setCreativeTab(null);
+		}
 	}
 	
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	world.setBlock(x, y, z, Furnitures.instance.getBlock(name, subID));
+    	world.setBlock(x, y, z, Furnitures.instance.getBlock(isActived ? name : name + "_a", subID));
     	return true;
     }
 
