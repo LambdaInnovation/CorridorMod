@@ -13,9 +13,11 @@
 package cn.corridor.furniture.block;
 
 import cn.corridor.furniture.Furnitures;
+import cn.liutils.template.block.BlockMulti;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * 
@@ -25,20 +27,24 @@ public class BlockLampTemplate extends BlockTemplate {
 	
 	protected String name;
 	protected boolean isActived = false;
+	protected BlockMulti change;
 
 	public BlockLampTemplate(Material mat) {
 		super(mat);
 		name = "lamp";
 		if(getLightValue() != 0) {
-			isActived = true;
+			System.err.println("Block ac");
+			isActived = true;//
 			setCreativeTab(null);
 		}
+		change = (BlockMulti) Furnitures.instance.getBlock(isActived ? name : name + "_a", subID);
 	}
 	
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	world.setBlock(x, y, z, Furnitures.instance.getBlock(isActived ? name : name + "_a", subID));
+    	System.err.println(change);
+    	change.setMultiBlock(world, x, y, z, ForgeDirection.NORTH);
     	return true;
     }
 

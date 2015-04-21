@@ -111,6 +111,8 @@
 	"lamp_a": {
 		"blockType": "block.BlockLampTemplate",
 		"name": "lampa",
+		"modelName": "lamp",
+		"textureName": "lamp",
 		"hardness": 1,
 		"lightLevel": 2.5,
 		"texCount": 2,
@@ -144,6 +146,8 @@
 	"lampl_a": {
 		"blockType": "block.BlockLampLargeTemplate",
 		"name": "lampla",
+		"modelName": "lampl",
+		"textureName": "lampl",
 		"hardness": 1,
 		"lightLevel": 3.5,
 		"texCount": 2,
@@ -288,6 +292,8 @@
 	"oillamp_a": {
 		"blockType": "block.BlockOilLampTemplate",
 		"name": "oillampa",
+		"modelName": "oillamp",
+		"textureName": "oillamp",
 		"material": "glass",
 		"hardness": 0.5,
 		"lightLevel": 2,

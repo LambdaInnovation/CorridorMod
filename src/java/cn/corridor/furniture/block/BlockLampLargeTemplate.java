@@ -26,6 +26,5 @@ public class BlockLampLargeTemplate extends BlockLampTemplate {
     public BlockLampLargeTemplate(Material mat) {
 		super(mat);
 		name = "lampl";
-		if(getLightValue() != 0) setCreativeTab(null);
 	}
 }
