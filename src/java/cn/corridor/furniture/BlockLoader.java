@@ -55,7 +55,7 @@ public class BlockLoader {
 	BlockInfo base;
 	Map<String, BlockInfo> blocks = new HashMap<String, BlockInfo>();
 	
-	Map<String, Object> regged = new HashMap<String, Object>();
+	Map<String, Block[]> regged = new HashMap<String, Block[]>();
 
 	public BlockLoader(String json) {
 		root = parser.parse(json).getAsJsonObject();
@@ -78,13 +78,14 @@ public class BlockLoader {
 		for(Entry<String, BlockInfo> ent : blocks.entrySet()) {
 			create(ent.getKey(), ent.getValue());
 		}
+		System.out.println("CM BlockLoader loaded " + blocks.size() + " block templates.");
 	}
 	
 	/**
 	 * Get the registered block instance by its name specified in Json. (Key)
 	 */
 	public Block getBlock(String name) {
-		return (Block) regged.get(name); //This asserts that the type is correct.
+		return getBlock(name, 0);
 	}
 	
 	/**
@@ -99,13 +100,6 @@ public class BlockLoader {
 	}
 	
 	private Object create(String id, BlockInfo inf) {
-	    if(inf.modelCount * inf.texCount == 1) {
-	        Block ret = createInstance(id, inf, 0, 0, "");
-	        
-	        regged.put(id, ret);
-	        return ret;
-	    }
-	    
 		Block[] ret = new Block[inf.modelCount * inf.texCount];
 		int i = 0;
 		for(int im = 0; im < inf.modelCount; ++im) {
@@ -125,6 +119,7 @@ public class BlockLoader {
             setupBlock(ret, inf, mid, tid, pfix);
             GameRegistry.registerBlock(ret, ItemBlockMulti.class, id + pfix);
         } catch(Exception e) {
+        	System.err.println("An error occured when creating block with id " + id);
             e.printStackTrace();
         }
 	    return ret;

@@ -132,7 +132,10 @@ public class BlockInfo {
 		return ret;
 	}
 	
+	@SuppressWarnings("unused")
 	void printDebug() {
+		if(true) return;
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("{ name: " + name + "\n");
 		sb.append("blockType: " + blockType + "\n");
@@ -144,8 +147,7 @@ public class BlockInfo {
 		}
 		sb.append("name: " + name + "\n");
 		sb.append("count: " + texCount + " " + modelCount + "\n");
-		sb.append("scale: " + scale + "\n");
+		sb.append("scale: " + scale + "\n}");
 		System.out.print(sb.toString());
-		System.out.println("}");
 	}
 }
