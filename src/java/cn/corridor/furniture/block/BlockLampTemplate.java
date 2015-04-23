@@ -26,25 +26,19 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockLampTemplate extends BlockTemplate {
 	
 	protected String name;
-	protected boolean isActived = false;
-	protected BlockMulti change;
 
 	public BlockLampTemplate(Material mat) {
 		super(mat);
 		name = "lamp";
-		if(getLightValue() != 0) {
-			System.err.println("Block ac");
-			isActived = true;//
-			setCreativeTab(null);
-		}
-		change = (BlockMulti) Furnitures.instance.getBlock(isActived ? name : name + "_a", subID);
 	}
 	
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	System.err.println(change);
-    	change.setMultiBlock(world, x, y, z, ForgeDirection.NORTH);
+    	String name = (getLightValue() != 0) ? this.name : this.name + "_a";
+		System.err.println(name);
+		((BlockMulti) Furnitures.instance.getBlock(name, subID)).setMultiBlock(world, x, y, z, 
+				ForgeDirection.NORTH);
     	return true;
     }
 
