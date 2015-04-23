@@ -35,10 +35,8 @@ public class BlockLampTemplate extends BlockTemplate {
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	String name = (getLightValue() != 0) ? this.name : this.name + "_a";
-		System.err.println(name);
-		((BlockMulti) Furnitures.instance.getBlock(name, subID)).setMultiBlock(world, x, y, z, 
-				ForgeDirection.NORTH);
+		((BlockMulti) Furnitures.instance.getBlock((getLightValue() != 0) ? name : name + "_a", subID))
+			.setMultiBlock(world, x, y, z, ForgeDirection.NORTH);
     	return true;
     }
 

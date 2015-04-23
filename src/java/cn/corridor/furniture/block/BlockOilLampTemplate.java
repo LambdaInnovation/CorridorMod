@@ -33,10 +33,8 @@ public class BlockOilLampTemplate extends BlockLampTemplate {
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
 			float a, float b, float c) {
-    	String name = (getLightValue() != 0) ? this.name : this.name + "_a";
-		System.err.println(name);
-		((BlockMulti) Furnitures.instance.getBlock(name)).setMultiBlock(world, x, y, z, 
-				ForgeDirection.NORTH);
+		((BlockMulti) Furnitures.instance.getBlock((getLightValue() != 0) ? this.name : this.name + "_a"))
+			.setMultiBlock(world, x, y, z, ForgeDirection.NORTH);
     	return true;
     }
 
