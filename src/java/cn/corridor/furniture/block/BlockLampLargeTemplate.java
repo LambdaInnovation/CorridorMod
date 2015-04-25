@@ -15,7 +15,9 @@ package cn.corridor.furniture.block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import cn.corridor.furniture.Furnitures;
+import cn.liutils.template.block.BlockMulti;
 
 /**
  * 
@@ -27,4 +29,14 @@ public class BlockLampLargeTemplate extends BlockLampTemplate {
 		super(mat);
 		name = "lampl";
 	}
+    
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
+			float a, float b, float c) {
+    	int[] coord = getOrigin(world, x, y, z);
+		((BlockMulti) Furnitures.instance.getBlock((getLightValue() != 0) ? name : name + "_a", subID))
+			.setMultiBlock(world, coord[0], coord[1], coord[2], ForgeDirection.NORTH);
+    	return true;
+    }
+    
 }
