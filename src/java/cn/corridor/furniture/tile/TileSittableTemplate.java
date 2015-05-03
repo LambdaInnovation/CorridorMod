@@ -39,6 +39,8 @@ public class TileSittableTemplate extends TileTemplate {
 					xCoord, yCoord, zCoord);
 			worldObj.spawnEntityInWorld(ent);
 		}
+		
+		super.updateEntity();
 	}
 	
 	public void onTileActivated(EntityPlayer player) {

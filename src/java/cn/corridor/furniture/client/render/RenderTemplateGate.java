@@ -28,8 +28,10 @@ public class RenderTemplateGate extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f) {
 		Block bt = te.getBlockType();
+		//System.out.println("Proceessing " + te);
 		if(!(bt instanceof BlockTemplate))
 			return;
+		//System.out.println("2Proceessing " + te);
 		BlockTemplate template = (BlockTemplate) bt;
 		template.getRender().renderTileEntityAt(te, x, y, z, f);
 	}
