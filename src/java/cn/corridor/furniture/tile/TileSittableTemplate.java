@@ -1,14 +1,26 @@
 package cn.corridor.furniture.tile;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import cn.annoreg.core.RegistrationClass;
+import cn.annoreg.mc.RegTileEntity;
+import cn.corridor.furniture.client.render.RenderTemplateGate;
 import cn.liutils.template.entity.EntitySittable;
 
 /**
  * TileEntity for sittable block (Copy from OTF)
  * @author WeAthFolD
  */
+@RegistrationClass
+@RegTileEntity
+@RegTileEntity.HasRender
 public class TileSittableTemplate extends TileTemplate {
+	
+	@RegTileEntity.Render
+	@SideOnly(Side.CLIENT)
+	public static RenderTemplateGate renderer;
 	
 	/**
 	 * Y Offset (Default is the center of the block)
