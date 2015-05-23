@@ -13,7 +13,7 @@
 package cn.corridor.core.register;
 
 import net.minecraft.item.Item;
-import cn.annoreg.core.RegistrationClass;
+import cn.annoreg.core.Registrant;
 import cn.annoreg.mc.RegItem;
 import cn.corridor.Corridor;
 
@@ -21,7 +21,7 @@ import cn.corridor.Corridor;
  * @author WeathFolD
  *
  */
-@RegistrationClass
+@Registrant
 public class CoreItems {
 
 	@RegItem

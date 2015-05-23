@@ -12,7 +12,7 @@
  */
 package cn.corridor.furniture.tile;
 
-import cn.annoreg.core.RegistrationClass;
+import cn.annoreg.core.Registrant;
 import cn.annoreg.mc.RegTileEntity;
 import cn.corridor.furniture.client.render.RenderTemplateGate;
 import cn.liutils.template.block.TileMulti;
@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author WeathFolD
  *
  */
-@RegistrationClass
+@Registrant
 @RegTileEntity
 @RegTileEntity.HasRender
 public class TileTemplate extends TileMulti {

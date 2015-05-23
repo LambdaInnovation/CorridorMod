@@ -16,13 +16,13 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 
-import cn.annoreg.core.RegistrationClass;
+import cn.annoreg.core.Registrant;
 
 /**
  * @author WeathFolD
  *
  */
-@RegistrationClass
+@Registrant
 public class Furnitures {
 
 	public static BlockLoader instance;
