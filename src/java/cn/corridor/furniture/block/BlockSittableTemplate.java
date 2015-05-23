@@ -12,32 +12,33 @@
  */
 package cn.corridor.furniture.block;
 
-import cn.corridor.furniture.Furnitures;
-import cn.liutils.template.block.BlockMulti;
+import cn.corridor.furniture.tile.TileSittableTemplate;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * 
  * @author KSkun
  */
-public class BlockLampTemplate extends BlockTemplate {
-	
-	protected String name;
+public class BlockSittableTemplate extends BlockTemplate {
 
-	public BlockLampTemplate(Material mat) {
+	public BlockSittableTemplate(Material mat) {
 		super(mat);
-		name = "lamp";
 	}
 	
     @Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, 
-			float a, float b, float c) {
-		((BlockMulti) Furnitures.instance.getBlock((getLightValue() != 0) ? name : name + "_a", subID))
-			.setMultiBlock(world, x, y, z, ForgeDirection.NORTH);
-    	return true;
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, 
+    		float a, float b, float c) { 
+    	if(world.isRemote) return false;
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	System.err.println(t);
+    	if(t == null || !(t instanceof TileSittableTemplate))
+    		return false;
+    	TileSittableTemplate te = (TileSittableTemplate) t;
+    	te.onTileActivated(player);
+        return true;
     }
 
 }
